@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700|Merriweather:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Quick Def</title>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1 class="title">Quick Def</h1>
+        </header>
+        <div class="main">
+            <input-definition @add="add" :categories="categories"></input-definition>
+            <div class="separator"></div>
+            <section class="filter-section">
+                <input class="search" type="text" placeholder="Search..." v-model="searchTerm">
+                <category-input v-model="categoryFilter" :options="categories" :placeholder="'Category'"></category-input>
+            </section>
+            <transition-group class="definitions" name="def-list" tag="div">
+                <single-def v-for="d in filteredDefList" :key="d.id" :def="d" @remove="remove"></single-def>
+            </transition-group>
+        </div>
+    </div>
+    <script src="vue.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
