@@ -12,11 +12,44 @@ function post(path, obj) {
 
 Vue.component('single-def', {
     props: ['def'],
+    data() {
+        return {
+            editing: false,
+            currentEdit: ''
+        };
+    },
+    methods: {
+        startEdit() {
+            this.currentEdit = this.def.definition;
+
+            this.editing = true;
+        },
+        stopEdit() {
+            if(this.currentEdit !== '') {
+                post('/edit', {
+                    id: this.def.id,
+                    definition: this.currentEdit,
+                });
+                this.$emit('update', {
+                    ...this.def,
+                    definition: this.currentEdit
+                });
+            }
+
+            this.editing = false;
+        }
+    },
     template: `
     <div class="def card">
-        <div class="remove" @click="$emit('remove', def.id)">X</div>
+        <div class="def-right">
+            <span class="edit" v-if="editing" @click="stopEdit">Save</span>
+            <span class="edit" v-else @click="startEdit">Edit</span>
+            
+            <span class="remove" @click="$emit('remove', def.id)">X</span>
+        </div>
         <div class="term">{{ def.term }} <span v-if="def.category !== ''" class="category">{{ def.category }}</span></div>
-        <div class="definition">{{ def.definition }}</div>
+        <textarea class="definition" v-if="editing" v-model="currentEdit" rows="3"></textarea>
+        <div class="definition" v-else>{{ def.definition }}</div>
     </div>
     `
 });
@@ -168,6 +201,9 @@ new Vue({
             }).then(res => {
                 Vue.delete(this.defs, res.id);
             });
+        },
+        update(def) {
+            Vue.set(this.defs, def.id, def);
         }
     },
     mounted() {

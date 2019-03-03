@@ -103,14 +103,17 @@ header {
     margin: 2em 0 1em;
 }
 
-.remove {
+.def-right {
     display: none;
     float: right;
     user-select: none;
     cursor: pointer;
 }
+.def-right .edit {
+    margin: 0 .2em;
+}
 
-.card:hover .remove {
+.card:hover .def-right {
     display: inline;
 }
 
@@ -169,7 +172,6 @@ header {
 /* Option List Animation */
 
 .option {
-    overflow: hidden;
     transition: all .3s;
 }
 .options.open .option-list-leave-to, .options.open .option-list-enter {

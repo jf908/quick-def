@@ -81,7 +81,7 @@ service.post('/add', async (req,res) => {
 });
 
 service.post('/edit', async (req,res) => {
-    if(db[req.params.id] === undefined) return;
+    if(db[req.body.id] === undefined) return;
     const id = req.body.id;
 
     if(isNonEmptyString(req.body.term)) {

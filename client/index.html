@@ -22,7 +22,7 @@
                 <category-input v-model="categoryFilter" :options="categories" :placeholder="'Category'"></category-input>
             </section>
             <transition-group class="definitions" name="def-list" tag="div">
-                <single-def v-for="d in filteredDefList" :key="d.id" :def="d" @remove="remove"></single-def>
+                <single-def v-for="d in filteredDefList" :key="d.id" :def="d" @update="update" @remove="remove"></single-def>
             </transition-group>
         </div>
     </div>
