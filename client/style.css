@@ -67,12 +67,18 @@ header {
     margin: 1em 0;
 }
 
+.input-definition {
+    position: relative;
+}
+
 .add {
     position: absolute;
     left: 0;
     right: 0;
+    bottom: 0;
     margin: auto;
     width: 150px;
+    transform: translateY(50%);
 }
 
 .category {
