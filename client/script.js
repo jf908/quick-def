@@ -1,4 +1,4 @@
-const serverUrl = 'http://localhost:5678';
+const serverUrl = location.href.slice(0,-1);
 
 function post(path, obj) {
     return fetch(serverUrl + path, {
