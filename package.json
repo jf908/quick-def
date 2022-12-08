@@ -9,7 +9,7 @@
   "author": "jf908",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.1",
     "restana": "^2.8.2",
     "serve-static": "^1.13.2",
     "vue": "^2.6.6"
